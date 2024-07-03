@@ -98,3 +98,4 @@ Para executar os testes do frontend:
     ```bash
     ng test
     ```
+**Nota**: É necessário ter o Google Chrome instalado para executar os testes do frontend.
