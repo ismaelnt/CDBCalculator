@@ -29,13 +29,19 @@ Este projeto consiste em uma aplicação para calcular o valor bruto e líquido 
     dotnet restore
     ```
 
-3. Execute a aplicação:
+3. Compile a aplicação:
 
     ```bash
-    dotnet run
+    dotnet build
     ```
 
-4. A API estará disponível em `https://localhost:7240`.
+4. Execute a aplicação:
+
+    ```bash
+    dotnet watch run
+    ```
+
+4. A API estará disponível em `https://localhost:5064`.
 
 ### Frontend
 
@@ -92,3 +98,4 @@ Para executar os testes do frontend:
     ```bash
     ng test
     ```
+**Nota**: É necessário ter o Google Chrome instalado para executar os testes do frontend.
