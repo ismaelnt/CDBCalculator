@@ -16,7 +16,7 @@ export interface CDBResponse {
   providedIn: 'root',
 })
 export class CdbService {
-  private apiUrl = 'https://localhost:7240/api/CDB';
+  private apiUrl = 'http://localhost:5064/api/Cdb';
 
   constructor(private http: HttpClient) {}
 
