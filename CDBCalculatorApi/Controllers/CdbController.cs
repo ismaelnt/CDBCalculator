@@ -2,7 +2,7 @@
 using CdbCalculatorApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CDBCalculatorApi.Controllers;
+namespace CdbCalculatorApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -10,17 +10,17 @@ public class CdbController : ControllerBase
 {
     private readonly CdbService _cdbService;
 
-    public CdbController()
+    public CdbController(CdbService cdbService)
     {
-        _cdbService = new CdbService();
+        _cdbService = cdbService;
     }
 
     [HttpPost("calculate")]
-    public ActionResult<CdbResponse> Calculate(CdbRequest request)
+    public IActionResult Calculate([FromBody] CdbRequest request)
     {
-        if (request.InitialValue <= 0 || request.Months <= 0)
+        if (!ModelState.IsValid)
         {
-            return BadRequest("Invalid input values.");
+            return BadRequest();
         }
 
         var result = _cdbService.CalculateCdb(request);

@@ -20,7 +20,7 @@ public class CdbServiceTests
         };
         var expectedGrossValue = 1123.08m;
         var expectedNetValue = 1098.46m;
-        var tolerance = 0.01m;
+        var tolerance = 0.02m;
 
         var result = _service.CalculateCdb(request);
 

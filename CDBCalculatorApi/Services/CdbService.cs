@@ -12,26 +12,35 @@ public class CdbService
         decimal grossValue = request.InitialValue;
         for (int i = 0; i < request.Months; i++)
         {
-            grossValue *= 1 + (CDI * TB);
+            grossValue *= (1 + (CDI * TB));
         }
 
-        decimal gain = grossValue - request.InitialValue;
-        decimal taxRate = GetTaxRate(request.Months);
-        decimal tax = gain * taxRate;
-        decimal netValue = grossValue - tax;
+        decimal netValue = grossValue - (grossValue - request.InitialValue) * GetTaxRate(request.Months);
 
         return new CdbResponse
         {
-            GrossValue = grossValue,
-            NetValue = netValue
+            GrossValue = Math.Round(grossValue, 2),
+            NetValue = Math.Round(netValue, 2)
         };
     }
 
     public decimal GetTaxRate(int months)
     {
-        if (months <= 6) return 0.225m;
-        if (months <= 12) return 0.20m;
-        if (months <= 24) return 0.175m;
-        return 0.15m;
+        if (months <= 6)
+        {
+            return 0.225m;
+        }
+        else if (months <= 12)
+        {
+            return 0.20m;
+        }
+        else if (months <= 24)
+        {
+            return 0.175m;
+        }
+        else
+        {
+            return 0.15m;
+        }
     }
 }
