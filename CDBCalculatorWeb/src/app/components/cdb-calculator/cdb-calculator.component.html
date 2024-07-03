@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="calculator-card">
+    <h3>Calculadora de CDB</h3>
+    <form [formGroup]="cdbForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="initialValue">Valor Inicial</label>
+        <input
+          type="number"
+          id="initialValue"
+          formControlName="initialValue"
+          placeholder="Digite o valor inicial"
+        />
+        <div
+          *ngIf="
+            cdbForm.get('initialValue')!.invalid &&
+            cdbForm.get('initialValue')!.touched
+          "
+          class="error-message"
+        >
+          Valor inicial é obrigatório e deve ser maior que zero.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="months">Meses</label>
+        <input
+          type="number"
+          id="months"
+          formControlName="months"
+          placeholder="Digite o número de meses"
+        />
+        <div
+          *ngIf="
+            cdbForm.get('months')!.invalid && cdbForm.get('months')!.touched
+          "
+          class="error-message"
+        >
+          O número de meses é obrigatório e deve ser maior que 1.
+        </div>
+      </div>
+      <button type="submit" class="btn-submit" [disabled]="cdbForm.invalid">
+        Calcular
+      </button>
+    </form>
+
+    <div *ngIf="result" class="result-section">
+      <h4>Resultados</h4>
+      <p>
+        <strong>Valor Bruto:</strong>
+        {{
+          result.grossValue | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR"
+        }}
+      </p>
+      <p>
+        <strong>Valor Líquido:</strong>
+        {{ result.netValue | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR" }}
+      </p>
+    </div>
+  </div>
+</div>
